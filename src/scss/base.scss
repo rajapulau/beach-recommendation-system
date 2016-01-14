@@ -1,0 +1,15 @@
+/* setting var */
+$primary: #afa276;
+$grey: #ccc;
+$lighterGrey: #faf6ec;
+$lightGrey: #eae6dc;
+$inactive: #c2c2c2;
+$danger: #ed5153;
+$success: #3cd3ad;
+$info: #00aeef;
+
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
+@import '../../node_modules/font-awesome/scss/font-awesome';
+@import './main/_style.scss';
+@import './main/component.scss';
+@import './main/datetimepicker.scss';

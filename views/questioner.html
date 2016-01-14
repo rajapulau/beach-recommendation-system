@@ -1,0 +1,48 @@
+<h3 class="text-center">RESULT</h3>
+<!-- <table class="table"> -->
+<!-- <tr ng-repeat-start="rows in Questioner.results track by $index"> -->
+<!--   <td>{{$index+1}}. {{rows.name}}</td> -->
+<!-- </tr> -->
+<!-- <tr ng-repeat-start="items in rows.answer"> -->
+<!--   <td><div class="list-pantai" style="font-weight: 900;">{{items.name}}</div></td> -->
+<!-- </tr> -->
+<!-- <tr ng-repeat-end ng-repeat="value in items.kategori"> -->
+<!--   <td>{{value.name}}</td> -->
+<!--   <td>{{value.value}}</td> -->
+<!-- </tr> -->
+<!-- <tr ng-repeat-end></tr> -->
+<!-- </table> -->
+
+<table class="table">
+  <thead>
+    <th>No</th>
+    <th>Koresponden</th>
+    <!-- <th ng-repeat="rows in Questioner.results"></th> -->
+    <!-- <th ng-repeat-start="items in rows.answer"> -->
+    <!--   {{items.name}} -->
+    <!-- </th> -->
+    <!-- <th ng-repeat-end></th> -->
+  </thead>
+  <tbody>
+    <tr ng-repeat-start="row in Questioner.results[0].answer">
+      <td>{{$index+1}}</td>
+      <td></td>
+      <td colspan="{{Questioner.kategori.length}}" style="text-align:center">{{ row.name }} </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td ng-if="kat != ''" ng-repeat="kat in Questioner.kategori">
+        {{ kat }}
+      </td>
+    </tr>
+    <tr ng-repeat-end ng-repeat-start="items in Questioner.results">
+      <td></td>
+      <td>{{items.name}}</td>
+      <td ng-repeat-end ng-if="number != ''" ng-repeat-start="number in Questioner.kategori">
+        {{items.answer[$parent.$parent.$parent.$index].kategori[$index].name}}
+      </td>
+    </tr>
+    <tr ng-repeat-end></tr>
+  </tbody>
+</table>

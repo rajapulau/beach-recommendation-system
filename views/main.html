@@ -1,0 +1,75 @@
+<!-- Navigation -->
+<nav class="navbar nav-bar navbar-fixed-top" role="navigation">
+  <div class="container-inner">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+            <a href="#" ui-sref="main.home.dashboard" ui-sref-active="active">HOME</a>
+        </li>
+        <li>
+          <a href="#" ui-sref="main.home.how" ui-sref-active="active">HOW TO</a>
+        </li>
+        <li>
+          <a href="#" ui-sref="main.home.gallery" ui-sref-active="active">GALLERY</a>
+        </li>
+        <li>
+          <a href="#" ui-sref="main.home.questioner" ui-sref-active="active">QUESTIONERS</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container-page">
+  <div class="menu-list">
+    <ul class="list-group">
+      <li ng-click="Main.openMenu('quote')" ng-class="{active : Main.hide == false && Main.listMenu == 'quote'}" class="list-group-item">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-2x fa-pencil"></i>
+        <div>Pencarian Rekomendasi</div>
+      </a>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div ng-hide="Main.hide"  class="menu-second">
+      <div ng-if="Main.listMenu == 'quote'">
+        <form role="form">
+          <div class="form-group">
+            <label>Tanggal Rencana:</label>
+            <input
+            required
+            id="datetimepicker2"
+            class="form-control"
+            placeholder="End Date and Time"
+            type="text"
+            name = "end_date"
+            datetime-end="true"
+            datetime-picker
+            datetime-format="d-m-Y"
+            model="Vendor.form.end_date"
+            ng-model="Vendor.form.end_date"></input>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="top: 45px;padding-right: 113px;">
+        <div ui-view></div>
+    </div>
+  </div>
+</div>
+</div>
