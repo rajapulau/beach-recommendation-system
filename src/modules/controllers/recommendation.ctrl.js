@@ -1,10 +1,14 @@
 'use strict';
 
-HomeController.$inject = ['$rootScope', '$http','$state', '$scope','FileUploader'];
-function HomeController($rootScope, $http, $state, $scope, FileUploader){
+RecommendationController.$inject = ['$rootScope','$http', '$state', '$scope','FileUploader'];
+function RecommendationController($rootScope, $http, $state, $scope, FileUploader){
   var vm      = this;
   vm.hide     = true;
-  vm.detail   = detail;
+  vm.goDetail = goDetail;
+
+  function goDetail(){
+    $state.go('main.home.detail');
+  }
 
   function convertDMSToDD(co) {
     var direction = co.match(/([A-Z])/g)[0];
@@ -30,26 +34,15 @@ function HomeController($rootScope, $http, $state, $scope, FileUploader){
               var lng = convertDMSToDD(co[1]);
               r.lat = lat;
               r.lng = lng;
-              // var url = 'http://api.wunderground.com/api/d6a1255f06e279bf/conditions/forecast/alert/q/-8.024916666666668,110.03255555555556.json';
-              // $http.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng+'&appid=2de143494c0b295cca9337e1e96b00e0')
-              //   .success(function(res){
-              //     r.weather = res.weather[0].main;
-              //     r.icon_weather = 'http://openweathermap.org/img/w/'+res.weather[0].icon+'.png';
-              // })
           }
         })
       console.info('response pantai', res);
-    })
-
-  function detail(){
-    console.info('go to details');
-    $state.go('main.home.detail');
-  }
+    });
 
   (function(){
   })();
 
 }
 
-module.exports = HomeController;
+module.exports = RecommendationController;
 

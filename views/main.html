@@ -17,14 +17,14 @@
             <a href="#" ui-sref="main.home.dashboard" ui-sref-active="active">HOME</a>
         </li>
         <li>
-          <a href="#" ui-sref="main.home.how" ui-sref-active="active">HOW TO</a>
-        </li>
-        <li>
           <a href="#" ui-sref="main.home.gallery" ui-sref-active="active">GALLERY</a>
         </li>
         <li>
-          <a href="#" ui-sref="main.home.questioner" ui-sref-active="active">QUESTIONERS</a>
+          <a href="#" ui-sref="main.home.how" ui-sref-active="active">ABOUT</a>
         </li>
+        <!-- <li> -->
+        <!--   <a href="#" ui-sref="main.home.questioner" ui-sref-active="active">QUESTIONERS</a> -->
+        <!-- </li> -->
       </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -37,10 +37,10 @@
   <div class="menu-list">
     <ul class="list-group">
       <li ng-click="Main.openMenu('quote')" ng-class="{active : Main.hide == false && Main.listMenu == 'quote'}" class="list-group-item">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <div class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-2x fa-pencil"></i>
         <div>Pencarian Rekomendasi</div>
-      </a>
+      </div>
       </li>
     </ul>
   </div>
@@ -48,28 +48,50 @@
     <div ng-hide="Main.hide"  class="menu-second">
       <div ng-if="Main.listMenu == 'quote'">
         <form role="form">
+          <!-- <div class="form-group"> -->
+          <!--   <label>Tanggal Rencana:</label> -->
+          <!--   <input -->
+          <!--   required -->
+          <!--   id="datetimepicker2" -->
+          <!--   class="form-control" -->
+          <!--   placeholder="Date Traveling" -->
+          <!--   type="text" -->
+          <!--   name = "end_date" -->
+          <!--   datetime-end="true" -->
+          <!--   datetime-picker -->
+          <!--   datetime-format="d-m-Y" -->
+          <!--   model="Home.form.end_date" -->
+          <!--   ng-model="Home.form.end_date"></input> -->
+          <!-- </div> -->
           <div class="form-group">
-            <label>Tanggal Rencana:</label>
-            <input
-            required
-            id="datetimepicker2"
-            class="form-control"
-            placeholder="End Date and Time"
-            type="text"
-            name = "end_date"
-            datetime-end="true"
-            datetime-picker
-            datetime-format="d-m-Y"
-            model="Vendor.form.end_date"
-            ng-model="Vendor.form.end_date"></input>
+            <label for="kemana" class="title-form">Mau pergi ke pantai seperti apa? </label>
+            <select selector
+              required
+              ng-click= "Main.changeValue()"
+              name="character"
+              model="Main.form.characters"
+              ng-model="Main.form.character_name"
+              placeholder="Karakteristik pantai?"
+              options="Main.characters" class="inline"
+              multi=true
+              label-attr="label">
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="cari" ng-click="Main.goRecommendation()">
           </div>
         </form>
       </div>
     </div>
 
-    <div class="col-md-12" style="top: 45px;padding-right: 113px;">
+    <div class="col-md-12" style="top: 45px;padding-right: 160px;padding-bottom: 12px;">
         <div ui-view></div>
     </div>
   </div>
 </div>
+<footer class="footer">
+  <div class="text-center">
+    <p class="text-muted">jogja@2016</p>
+  </div>
+</footer>
 </div>

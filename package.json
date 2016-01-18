@@ -4,8 +4,12 @@
   "description": "recommendation system",
   "main": "index.js",
   "dependencies": {
+    "angular-bootstrap-lightbox": "^0.10.0",
+    "angular-carousel": "^1.0.1",
     "angular-file-upload": "^2.2.0",
     "angular-leaflet-directive": "^0.10.0",
+    "angular-touch": "^1.4.8",
+    "angular-ui-bootstrap": "^1.0.3",
     "angular-ui-router": "^0.2.15",
     "autoprefixer-loader": "^3.1.0",
     "babel": "^5.8.23",

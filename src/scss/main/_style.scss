@@ -75,15 +75,53 @@ a.active{
   padding-left: 25px;
   height: 100%;
   overflow-x: auto;
+  background: #EFEFF4;
+}
+
+.row-content{
+  -moz-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  -webkit-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+  margin-left: 5px;
+  margin-top: 30px;
+  padding: 20px 0 20px;
+  position: relative;
+  top: -20px;
 }
 
 .content{
   // background: #ddd;
-  cursor: pointer;
-  border: 1px solid #E3E3E3;
-  box-shadow: 5px 5px 5px #FAFAFA;
-  margin-right: 15px;
+  height: 480px;
+  // border: 1px solid #E3E3E3;
+  // box-shadow: 5px 5px 5px #FAFAFA;
+  margin-right: 38px;
   margin-bottom: 15px;
+  -moz-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  -webkit-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+  // margin-left: 5px;
+  // margin-top: 30px;
+  padding: 20px 0 0;
+  position: relative;
+  // top: -20px;
+}
+
+
+.image-header{
+  width: 50%;
+}
+
+.no-padding{
+  padding-left:0px !important;
+  padding-right:0px !important;
 }
 
 .description{
@@ -91,10 +129,14 @@ a.active{
   margin-top: 10px;
 }
 
+.navbar-fixed-top, .navbar-fixed-bottom{
+  z-index:99999;
+}
+
 .menu-second{
   position: absolute;
   right: 104px;
-  z-index: 9;
+  z-index: 9999;
   // top: 50px;
   padding-right: 0px;
   background: #3D4246;
@@ -158,13 +200,66 @@ a.active{
   }
 }
 
+.title-form{
+  color:#fff;
+}
+
+.title-box{
+  font-weight: 900;
+  color: #BC2F2F;
+  font-size: 24px;
+}
+
+.box{
+  border: 1px solid #ddd;
+  margin-bottom:18px;
+}
+
+.box-bottom{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.box-content{
+  text-align: justify;
+}
+
+.view-carousel{
+  height:100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.carousel3{
+  margin-left: 50%;
+  width: 89px;
+}
+
+.gallery {
+  padding: 0;
+}
+
+.dropdown-toggle{
+  cursor: pointer;
+}
+
+.gallery li {
+  display: inline-block;
+  margin: 0 1em 1em 0;
+  list-style-type: none;
+  text-align: center;
+  img{
+    cursor:pointer;
+  }
+}
+
 form{
   padding: 25px;
 }
 
 .form-group{
   label{
-    color: #fff;
+    // color: #fff;
   }
 }
 
@@ -227,4 +322,15 @@ form{
       color: #fff;
     }
   }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 25px;
+  background-color: #FFFFFF;
+  font-weight: 900;
+  border-top: 1px solid #FF7301
 }

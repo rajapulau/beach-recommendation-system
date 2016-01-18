@@ -6,6 +6,7 @@ var HowCtrl            = require('./how.ctrl.js');
 var GalleryCtrl         = require('./gallery.ctrl.js');
 var DetailCtrl         = require('./detail.ctrl.js');
 var QuestionerCtrl         = require('./questioner.ctrl.js');
+var RecommendationCtrl         = require('./recommendation.ctrl.js');
 
 app
     .controller('MainController', MainCtrl)
@@ -14,3 +15,4 @@ app
     .controller('DetailController', DetailCtrl)
     .controller('GalleryController', GalleryCtrl)
     .controller('QuestionerController', QuestionerCtrl)
+    .controller('RecommendationController', RecommendationCtrl)

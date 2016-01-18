@@ -5,6 +5,12 @@ function MainController($rootScope, $state, $scope, FileUploader){
   var vm      = this;
   vm.hide     = true;
   vm.openMenu = openMenu;
+  vm.goRecommendation = goRecommendation;
+
+
+  function goRecommendation(){
+    $state.go('main.home.recommendation');
+  }
 
   function openMenu(menu){
     if(menu != vm.listMenu){
@@ -26,6 +32,13 @@ function MainController($rootScope, $state, $scope, FileUploader){
     }
     vm.listMenu = menu;
   }
+
+  vm.characters= [
+  { value: "1", label: "Pasir Putih" },
+  { value: "2", label: "Berenang" },
+  { value: "3", label: "Berkarang" },
+  { value: "4", label: "Berenang" }
+  ];
 
   (function(){
   })();

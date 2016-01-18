@@ -17,11 +17,6 @@
   <thead>
     <th>No</th>
     <th>Koresponden</th>
-    <!-- <th ng-repeat="rows in Questioner.results"></th> -->
-    <!-- <th ng-repeat-start="items in rows.answer"> -->
-    <!--   {{items.name}} -->
-    <!-- </th> -->
-    <!-- <th ng-repeat-end></th> -->
   </thead>
   <tbody>
     <tr ng-repeat-start="row in Questioner.results[0].answer">
@@ -41,6 +36,7 @@
       <td>{{items.name}}</td>
       <td ng-repeat-end ng-if="number != ''" ng-repeat-start="number in Questioner.kategori">
         {{items.answer[$parent.$parent.$parent.$index].kategori[$index].name}}
+        {{items.answer[$parent.$parent.$parent.$index].kategori[$index].value}}
       </td>
     </tr>
     <tr ng-repeat-end></tr>

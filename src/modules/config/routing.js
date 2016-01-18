@@ -68,6 +68,16 @@
           }
         }
       })
+      .state('main.home.recommendation', {
+        url:          '/recommendation',
+        views:{
+          "viewsHome" : {
+            controllerAs: 'Recommendation',
+            controller:   'RecommendationController',
+            templateUrl:  'views/recommendation.html'
+          }
+        }
+      })
  }
 }).call(this);
 

@@ -1,0 +1,47 @@
+<h1 class="title">Pantai Depok</h1>
+<div class="row row-content">
+  <leaflet id="mymap" markers="markers" lf-center="center" height="480px" center="center" tiles="tiles"></leaflet>
+</div>
+<div class="row row-content">
+  <div class="col-md-12">
+    <ul class="gallery gallery1">
+      <li ng-repeat="image in images">
+      <a ng-click="openLightboxModal($index)">
+        <img ng-src="{{image.thumbUrl}}" class="img-thumbnail">
+      </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row row-content">
+  <div class="col-md-8 box-content">
+  <h3>Deskripsi</h3>
+    Parangtritis is located 27 km south of Yogyakarta and easily accessible by public transportation that operate up to 17:00pm as well as private vehicles. The afternoon before sunset is the best time to visit this most popular beach in Yogyakarta. But if you arrive sooner, it will not hurt for going up to Tebing Gembirawati (Gembirawati cliffs) behind this beach. From there, we can see the whole area of Parangtritis Beach, southern sea, up to the horizon.
+
+    Psst, YogYES will tell a secret. Not many people know that on the east side of this clifft, hidden temple ruins. Unlike the other temples located in a mountainous area, Gembirawati Temple is only a few hundred meters from the edge of Parangtritis Beach. To reach this temple, we can pass road uphill near the Hotel Queen of the South and then go down the path to the west for approximately 100 meters. Faintly roar of the ferocious waves of the southern sea could be heard from this temple.
+
+    Parangtritis Beach is very closely related to the legend of Ratu Kidul (Queen of South). Many Javanese people believe that Parangtritis Beach is the gate of Ratu Kidul's magical kingdom who controls the southern sea. Hotel Queen of the South is a resort that is named according to this the legend. Unfortunately the resort is now rarely, whereas it used to have a view that could make us breathless.
+  </div>
+</div>
+<h3>Mungkin kamu juga suka</h3>
+<div class="row row-content">
+<ul rn-carousel-locked="true" rn-carousel="" rn-carousel-index="carouselIndex" class="carousel1 view-carousel style-1" id="style-1">
+  <li ng-repeat="row in Detail.listpantai track by $index">
+      <div class="row box-bottom">
+        <div class="col-md-2">
+          <img ng-src="{{(row.image)?row.image:'/src/images/noimage'}}" alt="" class="image-header">
+        </div>
+        <div class="col-md-6">
+          <span>{{row.description}}</span>
+          <div>
+            <button class="btn btn-warning" ng-click="Recommendation.goDetail()">Lihat Selengkapnya</button>
+          </div>
+        </div>
+      </div>
+  </li>
+  <div class="rn-carousel-controls ng-scope">
+    <span class="rn-carousel-control rn-carousel-control-prev ng-scope" ng-click="prevSlide()" ng-if="carouselIndex > 0 || false"></span>
+    <span class="rn-carousel-control rn-carousel-control-next ng-scope" ng-click="nextSlide()" ng-if="carouselIndex < Detail.listpantai.length - 1 || false"></span>
+  </div>
+</ul>
+</div>
