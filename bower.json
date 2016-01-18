@@ -21,8 +21,5 @@
     "ngCordova": "~0.1.23-alpha",
     "angular-canvas-ext": "~0.0.9",
     "angular-mapbox": "~0.1.5"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
