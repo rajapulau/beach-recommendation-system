@@ -1,0 +1,24 @@
+{
+  "name": "pantai",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rajapulau/questioner-angular",
+  "authors": [
+    "Ganjar Widiatmansyah <rajapulau@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-selector": "~0.7.0",
+    "angular-read-more": "~1.0.3",
+    "datetimepicker": "~2.4.5",
+    "ngCordova": "~0.1.23-alpha",
+    "angular-canvas-ext": "~0.0.9",
+    "angular-mapbox": "~0.1.5"
+  }
+}
