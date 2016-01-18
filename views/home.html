@@ -17,15 +17,7 @@
     <span>{{pantai.full_description_title}}</span>
   </div>
   <div class="description col-sm-12">
-    <hm-read-more
-    hm-text="{{ pantai.description }}"
-    hm-limit="100"
-    ng-click="Home.detail()"
-    hm-more-text="info selengkpanya"
-    hm-less-text="read less"
-    hm-dots-class="dots"
-    hm-link-class="btn btn-warning">
-    </hm-read-more>
-    <!-- <button class="btn btn-warning" ng-click="Home.goDetail()">Lihat Selengkapnya</button> -->
+    {{ pantai.description }}
+    <button class="btn btn-warning" ng-click="Home.goDetail()">Lihat Selengkapnya</button>
   </div>
 </div>

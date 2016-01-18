@@ -1,18 +1,4 @@
-/*
- * angular-read-more v1.0.0
- * (c) 2014-2015 Hitesh Modha
- * License: MIT
- */
-
 'use strict';
-
-angular
-	.module('hm.readmore', [])
-	.directive('hmReadMore', readMore)
-	.config(function ($logProvider) {
-		$logProvider.debugEnabled(false);
-	});
-
 /** @ngInject */
 function readMore($templateCache) {
 	var directive = {
@@ -153,4 +139,5 @@ function readMore($templateCache) {
 	}
 };
 
-angular.module("hm.readmore").run(["$templateCache", function($templateCache) {$templateCache.put("readmore.template.html","<span name=\"text\">\n	<span>{{ vm.lessText }}</span><span ng-show=\"vm.showMoreText\" class=\"more-show-hide\">{{ vm.moreText }}</span>\n</span>\n\n<span name=\"toggle\" ng-show=\"vm.toggle.show\">\n	<span ng-class=\"vm.toggle.dotsClass\" ng-show=\"!vm.toggle.state\">{{ vm.toggle.dots }}</span>\n	<a ng-class=\"vm.toggle.linkClass\" ng-click=\"vm.doToggle()\">{{ vm.toggle.text }}</a>\n</span>\n");}]);
+angular.module("aadc").run(["$templateCache", function($templateCache) {$templateCache.put("readmore.template.html","<span name=\"text\">\n	<span>{{ vm.lessText }}</span><span ng-show=\"vm.showMoreText\" class=\"more-show-hide\">{{ vm.moreText }}</span>\n</span>\n\n<span name=\"toggle\" ng-show=\"vm.toggle.show\">\n	<span ng-class=\"vm.toggle.dotsClass\" ng-show=\"!vm.toggle.state\">{{ vm.toggle.dots }}</span>\n	<a ng-class=\"vm.toggle.linkClass\" ng-click=\"vm.doToggle()\">{{ vm.toggle.text }}</a>\n</span>\n");}]);
+module.exports = readMore;

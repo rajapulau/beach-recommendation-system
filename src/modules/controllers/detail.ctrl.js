@@ -6,7 +6,7 @@ function DetailController($rootScope, $state, $scope, FileUploader, leafletData,
   vm.hide     = true;
   vm.detail   = detail;
 
-  $http.get('http://localhost:3001/src/json/list.json')
+  $http.get('/dist/json/list.json')
     .success(function(res){
       vm.listpantai = res;
       console.info('response pantai', res);

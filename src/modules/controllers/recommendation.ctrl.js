@@ -24,7 +24,7 @@ function RecommendationController($rootScope, $http, $state, $scope, FileUploade
           return dd;
   }
 
-  $http.get('http://localhost:3001/src/json/list.json')
+  $http.get('/dist/json/list.json')
     .success(function(res){
       vm.listpantai = res;
         _.forEach(res, function(r){
