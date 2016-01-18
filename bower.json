@@ -14,11 +14,15 @@
     "tests"
   ],
   "dependencies": {
+    "bower": "0.6.x",
     "angular-selector": "~0.7.0",
     "angular-read-more": "~1.0.3",
     "datetimepicker": "~2.4.5",
     "ngCordova": "~0.1.23-alpha",
     "angular-canvas-ext": "~0.0.9",
     "angular-mapbox": "~0.1.5"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
