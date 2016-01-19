@@ -38,7 +38,7 @@
   "devDependencies": {},
   "scripts": {
     "production": "NODE_ENV=production webpack --config webpack.config.production.js -p --progress",
-    "postinstall": "bower install",
+    "postinstall": "bower cache clean && bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
