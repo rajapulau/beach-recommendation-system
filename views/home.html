@@ -1,10 +1,11 @@
-<h3 class="text-center">Pantai Yogyakarta</h3>
+<!-- <h3 class="text-center">Pantai Yogyakarta</h3> -->
+<h3 class="title-line"><span>Pantai Yogyakarta</span></h3>
 <div class="content col-md-2 no-padding" ng-repeat="pantai in Home.listpantai" >
-  <div class="text-center">
-    <div class="col-md-12 no-padding">
-      <img ng-src="{{(pantai.image)?pantai.image:'/src/images/noimage'}}" alt="" class="image-header">
+  <div class='wrapper'>
+    <img ng-src="{{(pantai.image)?pantai.image:'/src/images/noimage'}}" alt="" class="image-header"/>
+    <div class='description-box'>
+      <p class='description-content'>{{ pantai.pantai }}</p>
     </div>
-    <p class="title-box">{{pantai.pantai}}</p>
   </div>
   <div class="col-sm-12">
     <span>Koordinat : {{ pantai.koordinat}}</span>
@@ -18,6 +19,8 @@
   </div>
   <div class="description col-sm-12">
     {{ pantai.description }}
-    <button class="btn btn-warning" ng-click="Home.goDetail()">Lihat Selengkapnya</button>
+  </div>
+  <div class="col-sm-12 content__bottom">
+    <button class="btn" ng-click="Home.goDetail()">Lihat Selengkapnya</button>
   </div>
 </div>

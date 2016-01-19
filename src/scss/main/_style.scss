@@ -81,7 +81,7 @@ a.active{
 .row-content{
   -moz-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
   -webkit-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
-  box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  box-shadow: 6px 6px 8px rgba(136, 136, 136, 0.56);
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -103,24 +103,78 @@ a.active{
   // border: 1px solid #E3E3E3;
   // box-shadow: 5px 5px 5px #FAFAFA;
   margin-right: 38px;
-  margin-bottom: 15px;
+  margin-bottom: 50px;
   -moz-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
   -webkit-box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
-  box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  // box-shadow: rgba(78,89,93,0.25) 0 1px 0 0;
+  box-shadow: 6px 6px 8px rgba(136, 136, 136, 0.56);
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: #fff;
   // margin-left: 5px;
   // margin-top: 30px;
-  padding: 20px 0 0;
+  padding: 0px 0 0;
   position: relative;
   // top: -20px;
+  &__bottom{
+    display: block;
+    position: absolute;
+    background: #EAEAEA;
+    bottom: 0;
+    height: 45px;
+    button{
+      color: #fff;
+      background-color: #928E89;
+      border-color: #A7A4A1;
+      bottom: -5px;
+      position: relative;
+      right: 50%;
+      transform: translateX(62%);
+    }
+  }
+}
+
+.title-content{
+  font-size: 20px;
+  font-weight: 900;
+  border-bottom: 1px solid #ddd;
+}
+
+.title-line {
+  line-height: 0.5;
+  margin-bottom:40px;
+  text-align: center;
+}
+.title-line span {
+  font-weight: 900;
+  text-shadow: 2px 2px #B0B0B0;
+  display: inline-block;
+  position: relative;
+}
+.title-line span:before,
+.title-line span:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #BCBCBC;
+  border-top: 1px solid #BCBCBC;
+  top: 0;
+  width: 600px;
+}
+.title-line span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.title-line span:after {
+  left: 100%;
+  margin-left: 15px;
 }
 
 
 .image-header{
-  width: 50%;
+  width: 100%;
+  position: relative;
 }
 
 .no-padding{
@@ -208,10 +262,45 @@ a.active{
   color:#fff;
 }
 
+div.wrapper{
+  position:relative; /* important(so we can absolutely position the description div */
+}
+div.description-box{
+  position:absolute; /* absolute position (so we can position it where we want)*/
+  bottom:0px; /* position will be on bottom */
+  left:0px;
+  width:100%;
+  /* styling bellow */
+  background-color:#000;
+  font-size:15px;
+  color:white;
+  opacity:0.6; /* transparency */
+  filter:alpha(opacity=60); /* IE transparency */
+}
+p.description-content{
+  padding:10px;
+  margin:0px;
+  word-wrap: break-word;
+}
+
+
+.box-list{
+  position: relative;
+  display: block;
+}
+
 .title-box{
   font-weight: 900;
-  color: #BC2F2F;
-  font-size: 24px;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.66);
+  top: -55px;
+  position: relative;
+  height: 55px;
+  bottom:0;
+  &__text{
+    transform: translateY(50%);
+    font-size: 18px;
+  }
 }
 
 .box{
