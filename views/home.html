@@ -1,26 +1,28 @@
 <!-- <h3 class="text-center">Pantai Yogyakarta</h3> -->
 <h3 class="title-line"><span>Pantai Yogyakarta</span></h3>
-<div class="content col-md-2 no-padding" ng-repeat="pantai in Home.listpantai" >
-  <div class='wrapper'>
-    <img ng-src="{{(pantai.image)?pantai.image:'/src/images/noimage'}}" alt="" class="image-header"/>
+<div class="col-md-4 no-padding" ng-repeat="pantai in Home.listpantai" >
+  <div class="content">
+  <div class='wrapper container-fluid no-padding'>
+    <img ng-src="{{(pantai.image)?pantai.image:'/src/images/noimage'}}" alt="" class="img-responsive image-header"/>
     <div class='description-box'>
       <p class='description-content'>{{ pantai.pantai }}</p>
     </div>
   </div>
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-12 col-xs-12">
     <span>Koordinat : {{ pantai.koordinat}}</span>
   </div>
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-12 col-xs-12">
     <span>Perkiraan Cuaca Hari ini : {{pantai.weather}} </span>
     <img ng-src="{{pantai.icon_weather}}" alt="">
   </div>
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-12 col-xs-12">
     <span>{{pantai.full_description_title}}</span>
   </div>
-  <div class="description col-sm-12">
+  <div class="col-sm-12 col-md-12 col-xs-12 content__text">
     {{ pantai.description }}
   </div>
   <div class="col-sm-12 content__bottom">
     <button class="btn" ng-click="Home.goDetail()">Lihat Selengkapnya</button>
   </div>
+</div>
 </div>
