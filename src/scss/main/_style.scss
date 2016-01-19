@@ -93,6 +93,10 @@ a.active{
   top: -20px;
 }
 
+.modal-open .modal{
+  z-index: 9999999 !important;
+}
+
 .content{
   // background: #ddd;
   height: 600px;
