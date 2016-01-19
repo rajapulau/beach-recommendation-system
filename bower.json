@@ -15,11 +15,9 @@
   ],
   "dependencies": {
     "angular": "~1.4.8",
-    "angular-canvas-ext": "~0.0.9",
     "angular-mapbox": "~0.1.5",
     "angular-read-more": "~1.0.3",
     "angular-selector": "~0.7.0",
-    "datetimepicker": "~2.4.5",
-    "ngCordova": "~0.1.23-alpha"
+    "datetimepicker": "~2.4.5"
   }
 }
