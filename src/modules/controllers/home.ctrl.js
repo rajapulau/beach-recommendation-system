@@ -4,7 +4,7 @@ HomeController.$inject = ['$rootScope', '$http','$state', '$scope','FileUploader
 function HomeController($rootScope, $http, $state, $scope, FileUploader){
   var vm      = this;
   vm.hide     = true;
-  vm.detail   = detail;
+  vm.goDetail   = goDetail;
 
   // function convertDMSToDD(co) {
   //   var direction = co.match(/([A-Z])/g)[0];
@@ -40,7 +40,7 @@ function HomeController($rootScope, $http, $state, $scope, FileUploader){
         // })
     })
 
-  function detail(){
+  function goDetail(){
     console.info('go to details');
     $state.go('main.home.detail');
   }
