@@ -4,7 +4,6 @@
   "description": "recommendation system",
   "main": "index.js",
   "dependencies": {
-    "bower": "^1.7.2",
     "angular-bootstrap-lightbox": "^0.10.0",
     "angular-carousel": "^1.0.1",
     "angular-file-upload": "^2.2.0",
@@ -18,7 +17,9 @@
     "babel-core": "^6.3.21",
     "babel-loader": "^5.3.2",
     "bootstrap-sass": "^3.3.6",
+    "bower": "^1.7.2",
     "css-loader": "^0.17.0",
+    "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "~0.8.4",
     "jquery": "^2.1.4",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node server.js",
     "production": "NODE_ENV=production webpack --config webpack.config.production.js -p --progress",
     "postinstall": "bower cache clean && bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
