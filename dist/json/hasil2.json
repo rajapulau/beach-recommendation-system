@@ -1,0 +1,492 @@
+{
+    "total" : 6,
+    "users" : [
+        {
+            "name" : "user 1",
+            "answer" : [
+                {
+                    "name": "Pantai Parangtritis",
+                    "value" : 5
+                },
+                {
+                    "name": "Pantai Depok",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Parangkusumo",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Glagah",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Indrayanti",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Kukup",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Krakal",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baron",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Siung",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngerenehan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngelambor",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Jogan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Drini",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baru",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadranan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sundak",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadeng",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sepanjang",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Pok Tunggal",
+                    "value" : 2
+                }
+            ]
+        },
+        {
+            "name" : "user 2",
+            "answer" : [
+                {
+                    "name": "Pantai Parangtritis",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Depok",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Parangkusumo",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Glagah",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Indrayanti",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Kukup",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Krakal",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baron",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Siung",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngerenehan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngelambor",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Jogan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Drini",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baru",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadranan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sundak",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadeng",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sepanjang",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Pok Tunggal",
+                    "value" : 2
+                }
+            ]
+        },
+        {
+            "name" : "user 3",
+            "answer" : [
+                {
+                    "name": "Pantai Parangtritis",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Depok",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Parangkusumo",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Glagah",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Indrayanti",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Kukup",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Krakal",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baron",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Siung",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngerenehan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngelambor",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Jogan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Drini",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baru",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadranan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sundak",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadeng",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sepanjang",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Pok Tunggal",
+                    "value" : 2
+                }
+            ]
+        },
+        {
+            "name" : "user 4",
+            "answer" : [
+                {
+                    "name": "Pantai Parangtritis",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Depok",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Parangkusumo",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Glagah",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Indrayanti",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Kukup",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Krakal",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baron",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Siung",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngerenehan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngelambor",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Jogan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Drini",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baru",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadranan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sundak",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadeng",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sepanjang",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Pok Tunggal",
+                    "value" : 2
+                }
+            ]
+        },
+        {
+            "name" : "user 5",
+            "answer" : [
+                {
+                    "name": "Pantai Parangtritis",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Depok",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Parangkusumo",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Glagah",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Indrayanti",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Kukup",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Krakal",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baron",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Siung",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngerenehan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngelambor",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Jogan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Drini",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baru",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadranan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sundak",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadeng",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sepanjang",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Pok Tunggal",
+                    "value" : 2
+                }
+            ]
+        },
+        {
+            "name" : "user 6",
+            "answer" : [
+                {
+                    "name": "Pantai Parangtritis",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Depok",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Parangkusumo",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Glagah",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Indrayanti",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Kukup",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Krakal",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baron",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Siung",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngerenehan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Ngelambor",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Jogan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Drini",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Baru",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadranan",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sundak",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sadeng",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Sepanjang",
+                    "value" : 2
+                },
+                {
+                    "name": "Pantai Pok Tunggal",
+                    "value" : 2
+                }
+            ]
+        }
+]
+
+}
