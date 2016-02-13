@@ -10,7 +10,15 @@ function DetailController($rootScope, $state, $scope, FileUploader, leafletData,
     .success(function(res){
       vm.listpantai = res;
       console.info('response pantai', res);
-    });
+  });
+
+  $http.get('/dist/json/hasil2.json')
+  .success(function(res){
+      vm.rekomendasi = res;
+  })
+  .error(function(err){
+    console.info('error', err);
+  });
 
   $scope.images = [
   {
