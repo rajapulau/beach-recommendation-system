@@ -9,6 +9,7 @@ window.moment = require('moment');
 var ngTouch = require('angular-touch');
 var carousel  = require('angular-carousel');
 require('angular-ui-bootstrap');
+require('ng-tags-input');
 require('../bower_components/angular-selector/dist/angular-selector.min');
 require('../bower_components/datetimepicker/jquery.datetimepicker');
 require('../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min');
@@ -17,8 +18,9 @@ require('angular-file-upload');
 require('angular-leaflet-directive');
 require('leaflet');
 var app = angular.module('aadc',['ui.router','leaflet-directive','angularFileUpload','selector',
-    'angular-carousel','bootstrapLightbox']);
+    'angular-carousel','bootstrapLightbox','ngTagsInput']);
 
+require('./modules/factories/recFactory.js');
 require('./modules/config/routing.js')
 require('./modules/directives/index.js')
 require('./modules/controllers/index.js')
