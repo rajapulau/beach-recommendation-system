@@ -20,9 +20,9 @@ function HomeController($rootScope, $http, $state, $scope, FileUploader){
   //         return dd;
   // }
 
-  $http.get('/dist/json/list.json')
+  $http.get('http://localhost:3000/beach/list')
     .success(function(res){
-      vm.listpantai = res;
+      vm.listpantai = res.data;
         // _.forEach(res, function(r){
         //   if(r.koordinat){
         //       var co = r.koordinat.split(" ");
