@@ -16,7 +16,7 @@ function RecommendationController($rootScope, $http, $state, $scope, FileUploade
     var minutes = Number(co.match(/\°(.)/)[1]);
     // var seconds = co.match(/([0-9][0-9][^\'])\d/g)[0];
     var seconds = Number(co.match(/'((?:\\.|[^"\\])*)"/)[1]);
-    console.info(direction, degrees, minutes, seconds);
+    // console.info(direction, degrees, minutes, seconds);
           var dd = degrees + minutes/60 + seconds/(60*60);
           if (direction == "S" || direction == "W") {
             dd = dd * -1;
