@@ -5,8 +5,14 @@
   <div class='wrapper container-fluid no-padding'>
     <img ng-src="{{(pantai.image)?pantai.image:'/src/images/noimage'}}" alt="" class="img-responsive image-header"/>
     <div class='description-box'>
-      <p class='description-content'>{{ pantai.pantai }}</p>
+      <p class='description-content'>{{ pantai.name}}</p>
     </div>
+  </div>
+  <div>
+    tags:
+    <span ng-repeat="tag in pantai.tags">
+      {{ tag.name }},
+    </span>
   </div>
   <div class="col-sm-12 col-md-12 col-xs-12">
     <span>Koordinat : {{ pantai.koordinat}}</span>
