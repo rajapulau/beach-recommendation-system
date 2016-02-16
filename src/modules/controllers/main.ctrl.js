@@ -15,9 +15,12 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
         var data = Data.list;
         var allTags = Data.tags;
         var gSearch = {};
-        var totalVector= {};
-        var totalAll= {};
+        var length_vector_per_object= {};
+        var total_wdi_per_object= {};
+        var totalq = {};
         var cos={};
+        var matrix={};
+        var matrix_wdi ={};
 
         
 
@@ -40,49 +43,40 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             var tagsLength = tags.length;
             var tagsCount  = _.countBy(tags);
 
-            var arrTF = []
-
             var tagsCount3 = _.reduce(tagsCount, function (res, value, key) {
-
-                var sResults = _.reduce(searchCount, function(sRes, sValue, sKey){
-                    if (sKey === key) {
-                        res[key] = sValue*value;
-                        arrTF.push({[key]:sValue*value})
-                    }else{
-                        if (res[key] > 0) {
-                            res[key] = res[key]
-                        }else{
-                            res[key] = 0;
-                        }
-                    }
-                    return res;
-
-                },{});
-
-                return sResults;
+                res[key] = parseFloat((value / tagsLength).toFixed(3));
+                return res;
             }, {});
 
             results[beachName] = {
                 tags: tagsCount3,
             };
 
-            var df = _.reduce(tagsCount3, function (dfRes, dfValue, dfKey) {
-                var sizeTags = _.size(_.filter(results[beachName].tags, function(o) { return o>0; }));
-                if (dfValue > 0) {
-                    dfRes[dfKey] = sizeTags;
-                }else{
-                    dfRes[dfKey] = 0
-                }
+            var df = _.reduce(tagsCount, function (dfRes, dfValue, dfKey) {
+                dfRes[dfKey] = dfValue;
                 return dfRes;
             }, {});
+
+            var temp = _.reduce(allTags, function(tRes, tVal, tKey){
+                var tRes = tRes.concat(tVal.name.split('-'));
+                return tRes;
+
+            },[]);
+
+            var tagDF = _.reduce(temp, function (gRes, gValue, gKey) {
+                if(typeof df[gValue] === 'undefined') df[gValue] = 0;
+                gRes[gValue] = df[gValue];
+                return gRes;
+            }, {});
+
             results[beachName] = {
-                tags: tagsCount3,
-                df: df
+                df: tagsCount3,
+                tags: tagDF
             };
 
             return results;
         }, {});
-
+        
 
         var tags = _.reduce(allTags, function (res, tag) {  
             var ret = res.concat(tag.name.split('-'));
@@ -91,14 +85,39 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
 
         var unionTags = _.union(tags);
 
+        //menggabungkan tag dan beach
+        var varTag = _.reduce(unionTags, function(results, tag){
+            var v = _.reduce(dataTF, function(tRes, tVal, tKey){
+                // var sizeTags = _.size(_.filter(tVal.tags, function(o) { return o>0; }))
+                // var total = Data.list.length+1;
+                // res[tag] = parseFloat(Math.log10(total/sizeTags).toFixed(3))
+                // debugger
+                if (dataTF[tKey].tags[tag] > 0) {
+                    tRes[tKey] = tVal.tags[tag]
+                }
+                else{
+                    if (tRes[tKey] > 0) {
+                        tRes[tKey] = sRes[key]
+                    }else{
+                        tRes[tKey] = 0;
+                    }
+                }
+                return tRes;
+            },{});
+            results[tag] = v;
+            return results;
+        },{});
+
+        console.info('load varTag', varTag);
+
         var objTags = _.reduce(unionTags, function (results, tag) {
-
             var idf = _.reduce(dataTF, function(res, value, key){
-                var valDF = (value.df[tag])?value.df[tag]:0;
-                var total = Data.list.length+1;
-                var sizeTags = _.size(_.filter(dataTF[key].tags, function(o) { return o>0; }));
+                // var valDF = (value.df[tag])?value.df[tag]:0;
+                // debugger
+                // var total = Data.list.length+1;
+                // var sizeTags = _.size(_.filter(dataTF[key].df, function(o) { return o>0; }));
 
-                var resLog = parseFloat(Math.log10(total/sizeTags).toFixed(3));
+                var resLog = parseFloat(Math.log10( dataTF[key].df[tag]).toFixed(3));
                 res[key] = (_.isFinite(resLog))? resLog : 0;
                 return res;
             },{});
@@ -112,45 +131,47 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             var searchCount  = _.countBy(searchText);
 
             
-
             results[tag] = {
-                idf: idf,
+                //idf: idf,
 
             };
 
-            var tidf = _.reduce(searchCount, function(sRes, sValue, sKey){
-                    if (sKey === tag) {
-                        var valDF = (results[tag])?results[tag]:0;
-                        var total = Data.list.length+1;
-                        var sizeTags = _.size(_.filter(results[sKey].idf, function(o) { return o>0; }));
-                        sRes[sKey] = parseFloat(Math.log10(total/sizeTags).toFixed(3));
+            var tidf = _.reduce(varTag, function(fRes, fVal, fKey){
+                var sizeTags = _.size(_.filter(fVal, function(o) { return o>0; }))
+                var total = Data.list.length+1;
+
+                if (tag === fKey) {
+                    fRes[fKey] = parseFloat(Math.log10(total/sizeTags).toFixed(3))
+                }
+                else{
+                    if (fRes[fKey] > 0) {
+                        fRes[fKey] = fRes[fKey]
                     }else{
-                        if (sRes[sKey] > 0) {
-                            sRes[sKey] = sRes[sKey]
-                        }else{
-                            sRes[sKey] = 0;
-                        }
+                        fRes[fKey] = 0;
                     }
-                    return sRes
+                }
+                // fRes[fKey] = _.sum(fVal);
+                return fRes
             },{});
 
             results[tag] = {
-                tidf: (tidf[tag])?tidf[tag]:0,
-                idf: idf,
-
+                // tidf: (tidf[tag])?tidf[tag]:0,
+                tidf: tidf,
+                idf: idf
             };
 
             var wdt = _.reduce(dataTF, function(res, value, key){
-                var valDF = (value.df[tag])?value.df[tag]:0;
-                var valIDF = (results[tag].tidf)?results[tag].tidf:0;
-
-                res[key] = parseFloat((valDF*valIDF).toFixed(3));
+                // results[tag].tidf[tag]*varTag[tag][key];
+                // var valDF = (value.df[tag])?value.df[tag]:0;
+                // var valIDF = (results[tag].tidf)?results[tag].tidf:0;
+                // debugger
+                res[key] = parseFloat(results[tag].tidf[tag]*varTag[tag][key]);
                     return res;
             },{});
 
             results[tag] = {
-                tidf: (tidf[tag])?tidf[tag]:0,
-                idf: idf,
+                tidf: tidf,
+                //idf: idf,
                 wdt: wdt
             };
 
@@ -166,24 +187,29 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 var sResults = _.reduce(searchCount, function(sRes, sValue, sKey){
                     if (sKey === tag) {
                         var wdt = _.isNaN(results[tag].wdt[key])?0:results[tag].wdt[key];
-                        sRes[key] = parseFloat((results[tag].tidf*wdt).toFixed(3));
+                        sRes[key] = parseFloat((results[tag].tidf[sKey]*wdt).toFixed(3));
+                        sRes['q'] = results[tag].tidf[tag];
                     }else{
                         if (sRes[key] > 0) {
+                            sRes['q'] = sRes['q']
                             sRes[key] = sRes[key]
                         }else{
+                            sRes['q'] = 0;
                             sRes[key] = 0;
                         }
                     }
                     return sRes
                 },{});
-
+                // debugger
+                res['q'] = sResults['q'];
                 res[key] = sResults[key];
                 
                 return res;
             },{});
-
+            // debugger
+            // wdi['q'] = 0;
             results[tag] = {
-                idf: idf,
+                tidf: tidf,
                 wdt: wdt,
                 wdi: wdi
             };
@@ -198,58 +224,71 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 var searchCount  = _.countBy(searchText);
 
                 var sResults = _.reduce(searchCount, function(sRes, sValue, sKey){
-                    sRes['q'] = 0;
-                    if (sKey === tag) {
-                        var wdi = _.isNaN(results[tag].wdi[key])?0:results[tag].wdi[key];
-                        sRes[key] = (Math.pow(wdi, 2)).toFixed(3);
-                    }else{
-                        if (sRes[key] > 0) {
-                            sRes[key] = sRes[key]
-                        }else{
-                            sRes[key] = 0;
-                        }
-                    }
+                    var wdt = _.isNaN(results[tag].wdt[key])?0:results[tag].wdt[key];
+                    sRes[key] = parseFloat((Math.pow(wdt, 2)).toFixed(3));
+                    sRes['q'] = parseFloat(
+                        results[tag].wdi['q']*results[tag].tidf[tag]
+                        );
                     return sRes
                 },{});
 
-                if(typeof totalAll[key] === 'undefined') totalAll[key] = 0;
-                
-                totalAll[key] += +wdi[key]
+                if(typeof total_wdi_per_object[key] === 'undefined') total_wdi_per_object[key] = 0;
+                if(!matrix_wdi[key]) matrix_wdi[key]=0;
+                // matrix[key][tag] = results[tag].vector[key]
+                matrix_wdi[key] += results[tag].wdi[key]
+
+                total_wdi_per_object[key] += +wdt[key]
+                res['q'] = sResults['q'];
                 res[key] = sResults[key];
                 return res;
             },{});
 
             results[tag] = {
-                tidf: (tidf[tag])?tidf[tag]:0,
-                idf: idf,
+                tidf: tidf,
+                //idf: idf,
                 wdt: wdt,
                 wdi: wdi,
-                totalWdi: totalAll,
+                total_wdi_per_object: total_wdi_per_object,
                 vector: vector
             };
 
-            var tVector = _.reduce(dataTF, function(res, value, key){
-                if(typeof totalVector[key] === 'undefined') totalVector[key] = 0;
+            var total_length_vector_per_object = _.reduce(dataTF, function(res, value, key){
+                if(typeof length_vector_per_object[key] === 'undefined') length_vector_per_object[key] = 0;
+                // debugger
+                if(!matrix[key]) matrix[key]=0;
+                if(!matrix['q']) matrix['q']=0;
+                // if (_.isNaN(results[tag].vector['q'])) results[tag].vector['q'];
+                // console.info('load matrix q', +results[tag].vector['q'])
+                // matrix[key][tag] = results[tag].vector[key]
+                matrix['q'] += (_.isNaN(results[tag].vector['q']))?0:+results[tag].vector['q']
+                matrix[key] += results[tag].vector[key]
+                // length_vector_per_object[key] = +results[tag].vector[key]
                 res[key] = +vector[key]
                 return res;
             },{})
 
-            var sqrtVector = _.reduce(dataTF, function(res, value, key){
+            // _.reduce(matrix,function(mRes, mVal, mKey){
+            //     mRes[mKey] = 
+            //     return mRes
+            // },{})
+
+            var sqrt_total_vector_per_object = _.reduce(dataTF, function(res, value, key){
                 if(typeof res[key] === 'undefined') res[key] = 0;
                 res[key] += Math.sqrt(parseFloat(vector[key]))
                 return res;
             },{})
             
-            // console.info('looooo', totalAll);
+            // console.info('looooo', total_wdi_per_object);
+            // debugger
             results[tag] = {
                 tidf: (tidf[tag])?tidf[tag]:0,
-                idf: idf,
+                //idf: idf,
                 wdt: wdt,
                 wdi: wdi,
-                totalWdi: totalAll,
+                total_wdi_per_object: total_wdi_per_object,
                 vector: vector,
-                tVector: tVector,
-                sqrtVector: sqrtVector
+                // total_length_vector_per_object: length_vector_per_object,
+                // sqrt_total_vector_per_object: sqrt_total_vector_per_object
             };
 
             return results;
@@ -270,32 +309,55 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
         var cosinus = _.reduce(data, function(cRes, cItem){
             var beachName = cItem.name.replace(/ /g, '-').toLowerCase();
 
+            var total_q = _.reduce(objTags, function(qRes, qVal, qKey){
+                // debugger
+                // total_wdi_per_object[key] += +wdi[key]
+
+                if (objTags[qKey].vector['q']) {
+                    if(typeof objTags[qKey].vector['q'] === 'undefined') objTags[qKey].vector['q'] = 0;
+                    // console.info('llooad q', objTags[qKey].vector['q'])
+                    qRes += objTags[qKey].vector['q']
+                };
+                return qRes;
+            },{})
+
             var total_wdi = _.reduce(objTags, function(wRes, wVal, wKey){
-                wRes = objTags['ATV'].totalWdi
+                wRes = objTags['ATV'].total_wdi_per_object
                 return wRes;
             },{})
 
-            var total_vector = _.reduce(objTags, function(vRes, vVal, vKey){
-                vRes = objTags['ATV'].tVector
-                return vRes;
-            },{})
+            // var total_vector = _.reduce(objTags, function(vRes, vVal, vKey){
+            //     vRes = objTags['ATV'].total_length_vector_per_object
+            //     return vRes;
+            // },{})
 
             var sqrt_total_vector = _.reduce(objTags, function(oRes, oVal, oKey){
-                oRes = objTags['ATV'].sqrtVector
+                oRes = objTags['ATV'].sqrt_total_vector_per_object
                 return oRes;
             },{})
+
             // debugger
+            // console.info('load q',total_q);
+            var vector_q = parseFloat(Math.sqrt(parseFloat(matrix['q'].toFixed(3))).toFixed(3));
+            var vector_object = parseFloat(Math.sqrt(parseFloat(matrix[beachName].toFixed(3))).toFixed(3));
+            var wdi_object = parseFloat(matrix_wdi[beachName].toFixed(3));
+
             cRes[beachName] = {
-                total_wdi: total_wdi[beachName],
-                total_vector: total_vector[beachName],
-                sqrt_total_vector: sqrt_total_vector[beachName]
+                id: cItem.id,
+                total_q: parseFloat(matrix['q'].toFixed(3)),
+                total_wdi: wdi_object,
+                total_vector: parseFloat(matrix[beachName].toFixed(3)),
+                sqrt_total_vector_q: vector_q,
+                sqrt_total_vector: vector_object,
+                cosinus: parseFloat((wdi_object /(vector_q*vector_object)).toFixed(3))
             };
 
             return cRes;
         },{})
-
-        console.info('load dataTF', dataTF);
-        console.log('load objTags',objTags);
+        
+        console.info('load matrix',matrix);
+        // console.info('load dataTF', dataTF);
+        // console.log('load objTags',objTags);
         console.log('load cosinus',cosinus);
         $state.go('main.home.recommendation');
     }
