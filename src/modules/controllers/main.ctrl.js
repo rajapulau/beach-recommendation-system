@@ -7,8 +7,6 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
   vm.openMenu = openMenu;
   vm.goRecommendation = goRecommendation;
 
-  console.info('show Data', Data);
-
   function goRecommendation(){
     if(vm.form.search){
         var search = _.map(vm.form.search,'text');
@@ -103,8 +101,6 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             results[tag] = v;
             return results;
         },{});
-
-        console.info('load varTag', varTag);
 
         var objTags = _.reduce(unionTags, function (results, tag) {
             var idf = _.reduce(dataTF, function(res, value, key){
@@ -303,10 +299,29 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             return cRes;
         },{})
         
-        // console.info('load matrix',matrix);
+        var cosinusMergered = _.reduce(cosinus, function(cRes, cVal, cKey){
+          var cdata = _.reduce(data, function(dRes, dVal, dKey){
+            if (cVal.id == dVal.id) {
+                dRes[cKey] = {
+                    data: dVal,
+                    cosinus: cVal.cosinus
+                }
+            };
+            return dRes;
+          },{})
+
+        cRes[cKey] = cdata[cKey]
+        return cRes;
+        },{});
+
+        var cosinusOrdered = _.orderBy(cosinusMergered, ['cosinus'], ['desc']);
+
+        
         // console.info('load dataTF', dataTF);
-        // console.log('load objTags',objTags);
-        // console.log('load cosinus',cosinus);
+        console.log('load objTags',objTags);
+        console.info('load matrix',matrix);
+        console.log('load cosinus',cosinus);
+        console.log('load cosinus ordered',cosinusOrdered);
         $state.go('main.home.recommendation');
     }
   }

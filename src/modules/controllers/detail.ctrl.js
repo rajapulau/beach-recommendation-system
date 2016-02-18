@@ -9,7 +9,6 @@ function DetailController($rootScope, $state, $scope, FileUploader, leafletData,
   $http.get('/dist/json/list.json')
     .success(function(res){
       vm.listpantai = res;
-      console.info('response pantai', res);
   });
 
   $http.get('/dist/json/hasil2.json')
