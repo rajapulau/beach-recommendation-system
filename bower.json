@@ -14,9 +14,12 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.5.0",
-    "angular-read-more": "~1.0.3",
-    "angular-selector": "~0.7.0",
-    "datetimepicker": "~2.4.5"
+    "angular": "*",
+    "angular-read-more": "*",
+    "angular-selector": "*",
+    "datetimepicker": "*"
+  },
+  "resolutions": {
+    "angular": "1.5.0"
   }
 }
