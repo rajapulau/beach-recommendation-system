@@ -6,18 +6,18 @@ function DetailController($rootScope, $state, $scope, FileUploader, leafletData,
   vm.hide     = true;
   vm.detail   = detail;
 
-  $http.get('/dist/json/list.json')
-    .success(function(res){
-      vm.listpantai = res;
-  });
+  // $http.get('/dist/json/list.json')
+  //   .success(function(res){
+  //     vm.listpantai = res;
+  // });
 
-  $http.get('/dist/json/hasil2.json')
-  .success(function(res){
-      vm.rekomendasi = res;
-  })
-  .error(function(err){
-    console.info('error', err);
-  });
+  // $http.get('/dist/json/hasil2.json')
+  // .success(function(res){
+  //     vm.rekomendasi = res;
+  // })
+  // .error(function(err){
+  //   console.info('error', err);
+  // });
 
   $scope.images = [
   {
