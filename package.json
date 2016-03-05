@@ -44,6 +44,9 @@
     "postinstall": " bower cache clean && bower install && webpack --config ./webpack.heroku.config.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "bower": "~1.3.3"
+  },
   "keywords": [
     "angular",
     "material",
