@@ -15,7 +15,7 @@ app.factory('promises', ['$q',
 app.factory('apiClient', apiClientFactory);
 apiClientFactory.$inject = ['$http', 'promises']
 function apiClientFactory($http, promises){
-        var baseUrl = 'http://localhost:3000';
+        var baseUrl = 'http://api-jogja.herokuapp.com/';
         return new lsaApiClient.Angular(
                   $http, baseUrl, promises
                         );

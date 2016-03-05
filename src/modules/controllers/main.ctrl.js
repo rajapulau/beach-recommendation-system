@@ -314,14 +314,14 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
         return cRes;
         },{});
 
-        var cosinusOrdered = _.orderBy(cosinusMergered, ['cosinus'], ['desc']);
+        vm.cosinusOrdered = _.orderBy(cosinusMergered, ['cosinus'], ['desc']);
 
         
         // console.info('load dataTF', dataTF);
         console.log('load objTags',objTags);
         console.info('load matrix',matrix);
         console.log('load cosinus',cosinus);
-        console.log('load cosinus ordered',cosinusOrdered);
+        console.log('load cosinus ordered',vm.cosinusOrdered);
         $state.go('main.home.recommendation');
     }
   }

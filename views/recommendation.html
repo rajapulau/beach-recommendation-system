@@ -1,15 +1,15 @@
 <h3>Pantai yang kamu cari ?</h3>
-<div class="col-md-12 no-padding hvr-float-shadow" ng-repeat="pantai in Recommendation.listpantai" >
+<div class="col-md-12 no-padding hvr-float-shadow" ng-repeat="pantai in Main.cosinusOrdered | limitTo:5" >
   <div class="row box row-content">
     <div class="col-sm-4">
-      <img ng-src="{{(pantai.image)?pantai.image:'/src/images/noimage'}}" alt="" class="image-header">
+      <img ng-src="{{(pantai.data.image)?pantai.data.image:'/src/images/noimage'}}" alt="" class="image-header">
     </div>
     <div class="col-sm-4">
-      <p class="title-content">{{pantai.pantai}}</p>
-      <span>{{pantai.description}}</span>
+      <p class="title-content">{{pantai.data.name}}</p>
+      <span>{{pantai.data.description}}</span>
     </div>
     <div class="col-sm-4">
-      <div>Koordinat : {{ pantai.koordinat}}</div>
+      <div>Koordinat : {{ pantai.data.coordinat}}</div>
       <div>Perkiraan Cuaca Hari ini : {{pantai.weather}} </div>
       <img ng-src="{{pantai.icon_weather}}" alt="">
       <div>
