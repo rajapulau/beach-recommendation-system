@@ -11,7 +11,6 @@ var carousel  = require('angular-carousel');
 require('angular-ui-bootstrap');
 require('ng-tags-input');
 require('../bower_components/angular-selector/dist/angular-selector.min');
-require('../bower_components/datetimepicker/jquery.datetimepicker');
 require('../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min');
 require('../node_modules/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min');
 require('angular-file-upload');
