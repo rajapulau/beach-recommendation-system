@@ -18,8 +18,5 @@
     "angular-read-more": "*",
     "angular-selector": "*",
     "datetimepicker": "*"
-  },
-  "resolutions": {
-    "angular": "1.5.0"
   }
 }
