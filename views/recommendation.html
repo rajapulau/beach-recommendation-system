@@ -13,31 +13,8 @@
       <div>Perkiraan Cuaca Hari ini : {{pantai.weather}} </div>
       <img ng-src="{{pantai.icon_weather}}" alt="">
       <div>
-            <button class="btn btn-warning" ng-click="Recommendation.goDetail()">Lihat Selengkapnya</button>
+            <button class="btn btn-warning" ng-click="Recommendation.goDetail(pantai.data.id)">Lihat Selengkapnya</button>
       </div>
     </div>
   </div>
 </div>
-<h1>rekomendasi lain</h1>
-<div class="row-content">
-<ul rn-carousel-locked="true" rn-carousel="" rn-carousel-index="carouselIndex" class="carousel1 view-carousel style-1" id="style-1">
-  <li ng-repeat="row in Recommendation.listpantai track by $index">
-      <div class="row box-bottom">
-        <div class="col-md-2">
-          <img ng-src="{{(row.image)?row.image:'/src/images/noimage'}}" alt="" class="image-header">
-        </div>
-        <div class="col-md-6">
-          <span>{{row.description}}</span>
-          <div>
-            <button class="btn btn-warning" ng-click="Recommendation.goDetail()">Lihat Selengkapnya</button>
-          </div>
-        </div>
-      </div>
-  </li>
-  <div class="rn-carousel-controls ng-scope">
-    <span class="rn-carousel-control rn-carousel-control-prev ng-scope" ng-click="prevSlide()" ng-if="carouselIndex > 0 || false"></span>
-    <span class="rn-carousel-control rn-carousel-control-next ng-scope" ng-click="nextSlide()" ng-if="carouselIndex < Recommendation.listpantai.length - 1 || false"></span>
-  </div>
-</ul>
-</div>
-

@@ -282,6 +282,8 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 return oRes;
             },{})
 
+            // debugger
+
             var vector_q = parseFloat(Math.sqrt(parseFloat(matrix['q'].toFixed(3))).toFixed(3));
             var vector_object = parseFloat(Math.sqrt(parseFloat(matrix[beachName].toFixed(3))).toFixed(3));
             var wdi_object = parseFloat(matrix_wdi[beachName].toFixed(3));

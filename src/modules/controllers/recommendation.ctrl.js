@@ -6,8 +6,8 @@ function RecommendationController($rootScope, $http, $state, $scope, FileUploade
   vm.hide     = true;
   vm.goDetail = goDetail;
 
-  function goDetail(){
-    $state.go('main.home.detail');
+  function goDetail(id){
+    $state.go('main.home.detail',{idPantai:id});
   }
 
   function convertDMSToDD(co) {

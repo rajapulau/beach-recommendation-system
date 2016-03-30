@@ -19,6 +19,30 @@ var lsa = (function(){
     return deferred.promise;
   }
 
+  Data.prototype.getData = function(id){
+    var _this    = this;
+    var deferred = this.promiseAdapter.deferred();
+    this.apiClient.getData(id)
+      .then(function(res){
+        deferred.resolve(res);
+      }, function(err){
+        deferred.reject(err);
+      });
+    return deferred.promise;
+  }
+
+  Data.prototype.getForusquareData = function(id){
+    var _this    = this;
+    var deferred = this.promiseAdapter.deferred();
+    this.apiClient.getForusquareData(id)
+      .then(function(res){
+        deferred.resolve(res);
+      }, function(err){
+        deferred.reject(err);
+      });
+    return deferred.promise;
+  }
+
   Data.prototype.loadTags = function(){
     var _this    = this;
     var deferred = this.promiseAdapter.deferred();

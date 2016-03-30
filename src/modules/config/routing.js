@@ -29,7 +29,7 @@
         }
       })
       .state('main.home.detail', {
-        url:          '/detail',
+        url:          '/detail/:idPantai',
         views:{
           "viewsHome" : {
             controllerAs: 'Detail',

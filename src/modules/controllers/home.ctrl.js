@@ -41,9 +41,8 @@ function HomeController($rootScope, $http, $state, $scope, FileUploader, Data){
       })
   })
 
-  function goDetail(){
-    console.info('go to details');
-    $state.go('main.home.detail');
+  function goDetail(id){
+    $state.go('main.home.detail',{idPantai:id});
   }
 
   (function(){

@@ -20,7 +20,46 @@ lsaApiClient.Angular = (function(){
         deferred.resolve(response.data);
       })
       .error(function(error){
-        deferred.reject(err);
+        deferred.reject(error);
+      })
+      return deferred.promise;
+    }
+
+    lsaApiClientAngular.prototype.getData = function(id){
+      var _this = this;
+      var url = lsaApiClient.generategetDataUrl(this.baseUrl, id);
+      var deferred = this.promiseAdapter.deferred();
+      this.$http({
+        method: 'GET',
+        url: url
+      })
+      .success(function(response){
+        deferred.resolve(response.data);
+      })
+      .error(function(error){
+        deferred.reject(error);
+      })
+      return deferred.promise;
+    }
+
+    lsaApiClientAngular.prototype.getForusquareData = function(id){
+      var _this = this;
+      var url = lsaApiClient.generateFoursquareUrl(id);
+      var deferred = this.promiseAdapter.deferred();
+      this.$http({
+        method: 'GET',
+        url: url
+      })
+      .success(function(response){
+        var data = {
+          name : response.response.venue.name,
+          location: response.response.venue.location,
+          photos: response.response.venue.photos
+        }
+        deferred.resolve(data);
+      })
+      .error(function(error){
+        deferred.reject(error);
       })
       return deferred.promise;
     }
@@ -37,7 +76,7 @@ lsaApiClient.Angular = (function(){
         deferred.resolve(response.data);
       })
       .error(function(error){
-        deferred.reject(err);
+        deferred.reject(error);
       })
       return deferred.promise;
     }
