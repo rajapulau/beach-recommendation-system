@@ -38,7 +38,7 @@ var lsa = (function(){
       .then(function(res){
         deferred.resolve(res);
       }, function(err){
-        deferred.reject(err);
+        deferred.resolve(err.meta.code);
       });
     return deferred.promise;
   }

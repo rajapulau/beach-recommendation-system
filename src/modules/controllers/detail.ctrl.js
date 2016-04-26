@@ -4,7 +4,7 @@ DetailController.$inject = ['Data','$rootScope', '$state', '$scope','FileUploade
 function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafletData, Lightbox){
   var vm      = this;
   vm.hide     = true;
-  vm.detail   = detail;
+  vm.goDetail   = goDetail;
   vm.idPantai = $state.params.idPantai;
   $scope.images   = [];
   $rootScope.loading = true;
@@ -40,35 +40,37 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
     .then(function(r){
       vm.foursquare = r;
       $rootScope.loading = false;
-      vm.images = _.map(vm.foursquare.photos.groups, function(r){
-            _.map(r.items, function (res, value, key) {
-                var dres = {
-                 'url': res.prefix+'width960'+res.suffix,
-                 'thumbUrl': res.prefix+'width40'+res.suffix,
-                }
-                // return res;
-                $scope.images.push(dres);
-            });
-        })
-
-      var mainMarker = {
-        lat: vm.foursquare.location.lat,
-        lng: vm.foursquare.location.lng,
-        message: vm.foursquare.name,
-        focus: true,
-        draggable: false
-      }
-
-      angular.extend($scope, {
-          center: {
+      if (r != '404') {
+          vm.images = _.map(vm.foursquare.photos.groups, function(r){
+                _.map(r.items, function (res, value, key) {
+                    var dres = {
+                     'url': res.prefix+'width960'+res.suffix,
+                     'thumbUrl': res.prefix+'width40'+res.suffix,
+                    }
+                    // return res;
+                    $scope.images.push(dres);
+                });
+            })
+          var mainMarker = {
             lat: vm.foursquare.location.lat,
             lng: vm.foursquare.location.lng,
-            zoom: 14,
-          },
-          markers: {
-            mainMarker:angular.copy(mainMarker)
+            message: vm.foursquare.name,
+            focus: true,
+            draggable: false
           }
-      });
+
+          angular.extend($scope, {
+              center: {
+                lat: vm.foursquare.location.lat,
+                lng: vm.foursquare.location.lng,
+                zoom: 14,
+              },
+              markers: {
+                mainMarker:angular.copy(mainMarker)
+              }
+          });
+      };
+
 
       var search = _.map(vm.pantai.tags, function(re){
         return re.name
@@ -396,11 +398,15 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
         // $scope.$apply();
    ////////// END /////////////////////////////
 
+    }, function(err){
+        $rootScope.loading = false;
     })
   });
 
 
-   
+ function goDetail(id){
+    $state.go('main.home.detail',{idPantai:id});
+  }
 
 
   function detail(){
