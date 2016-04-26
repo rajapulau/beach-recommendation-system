@@ -1,4 +1,12 @@
 <!-- <h3 class="text-center">Pantai Yogyakarta</h3> -->
+<div ng-show="loading" class="container-loading">
+  <div class="sk-folding-cube">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+  </div>
+</div>
 <h3 class="title-line"><span>Pantai Yogyakarta</span></h3>
 <div class="col-md-4 no-padding hvr-float-shadow" ng-repeat="pantai in Home.listpantai" >
   <div class="content">
@@ -8,10 +16,10 @@
       <p class='description-content'>{{ pantai.name}}</p>
     </div>
   </div>
-  <div>
+  <div class="container_tags">
     tags:
-    <span ng-repeat="tag in pantai.tags">
-      {{ tag.name }},
+    <span ng-repeat="tag in pantai.tags" class="tag_item">
+      {{ tag.name }}
     </span>
   </div>
   <div class="col-sm-12 col-md-12 col-xs-12">

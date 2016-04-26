@@ -1,4 +1,15 @@
-<h1 class="title">{{Detail.foursquare.name}}</h1>
+<div ng-show="loading" class="container-loading">
+  <div class="sk-folding-cube">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+  </div>
+</div>
+<h1 class="title">{{Detail.foursquare.name}}
+<img src="/dist/img/yogyes.png" class="pull-right">
+</h1>
+
 <div class="row row-content">
   <leaflet id="mymap" markers="markers" lf-center="center" height="480px" center="center" tiles="tiles"></leaflet>
 </div>
@@ -25,11 +36,10 @@
   <li ng-repeat="row in Detail.cosinusOrdered track by $index">
       <div class="row box-bottom">
         <div class="col-md-2">
-          <img ng-src="{{(row.data.image)?row.data.image:'/src/images/noimage'}}" alt="" class="image-header">
+          <img ng-src="{{(row.data.image)?row.data.image:'/src/images/noimage'}}" alt="" class="image-header-small img-responsive">
         </div>
         <div class="col-md-6">
-          <h3>{{row.data.name}}</h3>
-          <span>{{row.data.description}}</span>
+          <h3 style="margin-top:0px">{{row.data.name}}</h3>
           <div>
             <button class="btn btn-warning" ng-click="Recommendation.goDetail()">Lihat Selengkapnya</button>
           </div>

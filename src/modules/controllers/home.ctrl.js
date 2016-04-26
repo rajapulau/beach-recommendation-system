@@ -5,6 +5,7 @@ function HomeController($rootScope, $http, $state, $scope, FileUploader, Data){
   var vm      = this;
   vm.hide     = true;
   vm.goDetail   = goDetail;
+  $rootScope.loading = true;
 
   function convertDMSToDD(co) {
     var direction = co.match(/([A-Z])/g)[0];
@@ -24,6 +25,7 @@ function HomeController($rootScope, $http, $state, $scope, FileUploader, Data){
   Data.loadData()
   .then(function(res){
     vm.listpantai = res;
+    $rootScope.loading = false;
     _.forEach(res, function(r){
         if(r.coordinat){
             var co = r.coordinat.split(" ");

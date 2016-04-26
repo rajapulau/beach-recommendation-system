@@ -300,7 +300,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
 
             return cRes;
         },{})
-        
+
         var cosinusMergered = _.reduce(cosinus, function(cRes, cVal, cKey){
           var cdata = _.reduce(data, function(dRes, dVal, dKey){
             if (cVal.id == dVal.id) {
@@ -318,7 +318,6 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
 
         vm.cosinusOrdered = _.orderBy(cosinusMergered, ['cosinus'], ['desc']);
 
-        
         // console.info('load dataTF', dataTF);
         console.log('load objTags',objTags);
         console.info('load matrix',matrix);

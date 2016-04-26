@@ -5,6 +5,7 @@ function RecommendationController($rootScope, $http, $state, $scope, FileUploade
   var vm      = this;
   vm.hide     = true;
   vm.goDetail = goDetail;
+  $rootScope.loading = true;
 
   function goDetail(id){
     $state.go('main.home.detail',{idPantai:id});
@@ -27,6 +28,7 @@ function RecommendationController($rootScope, $http, $state, $scope, FileUploade
   $http.get('/dist/json/list.json')
     .success(function(res){
       vm.listpantai = res;
+      $rootScope.loading = false;
         _.forEach(res, function(r){
           if(r.koordinat){
               var co = r.koordinat.split(" ");

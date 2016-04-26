@@ -7,6 +7,7 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
   vm.detail   = detail;
   vm.idPantai = $state.params.idPantai;
   $scope.images   = [];
+  $rootScope.loading = true;
   var data = Data.list;
 
   // debugger
@@ -38,7 +39,7 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
     Data.getForusquareData(vm.pantai.id_foursquare)
     .then(function(r){
       vm.foursquare = r;
-
+      $rootScope.loading = false;
       vm.images = _.map(vm.foursquare.photos.groups, function(r){
             _.map(r.items, function (res, value, key) {
                 var dres = {
@@ -87,12 +88,10 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
             var matrix_wdi ={};
 
 
-///////////  start ////////////////////
-
+            ///////////  start ////////////////////
             var dataTF = data.reduce(function (results, item) {
             var beachName = item.name.replace(/ /g, '-').toLowerCase();
             var tags = _.reduce(item.tags, function (res, tag) {
-                  
             var ret = res.concat(tag.name.split('-'));
                 return ret;
             }, [])
@@ -371,26 +370,30 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
         var cosinusMergered = _.reduce(cosinus, function(cRes, cVal, cKey){
           var cdata = _.reduce(data, function(dRes, dVal, dKey){
             if (cVal.id == dVal.id) {
+              if(dVal.id != vm.idPantai) {
                 dRes[cKey] = {
                     data: dVal,
                     cosinus: cVal.cosinus
                 }
+              }
             };
             return dRes;
           },{})
 
-        cRes[cKey] = cdata[cKey]
-        return cRes;
+
+          if(cdata[cKey] != undefined){
+            cRes[cKey] = cdata[cKey]
+          }
+            return cRes;
         },{});
 
-        vm.cosinusOrdered = _.orderBy(cosinusMergered, ['cosinus'], ['desc']);
-
-        
+        vm.cosinusOrdered = _.orderBy(cosinusMergered, ['cosinus'], ['desc']).slice(0, 5);
         // console.info('load dataTF', dataTF);
         console.log('load objTags',objTags);
         console.info('load matrix',matrix);
-        console.log('load cosinus',cosinus);
+        console.log('load cosinus',cosinusMergered);
         console.log('load cosinus ordered',vm.cosinusOrdered);
+        // $scope.$apply();
    ////////// END /////////////////////////////
 
     })
