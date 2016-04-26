@@ -400,6 +400,13 @@ p.description-content{
     width: 120px;
 }
 
+.icon-weather {
+  display: block;
+  right: 0;
+  position: absolute;
+  z-index: 99;
+}
+
 form{
   padding: 25px;
 }

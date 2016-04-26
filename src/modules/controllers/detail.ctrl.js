@@ -16,6 +16,20 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
     Lightbox.openModal($scope.images, index);
   };
 
+  function convertDMSToDD(co) {
+    var direction = co.match(/([A-Z])/g)[0];
+    var degrees = parseFloat(co.match(/[A-Z](.+)\°/)[1]);
+    var minutes = parseFloat(co.match(/\°[0-9]*/)[0].slice(1));
+    var seconds = parseFloat(co.match(/'((?:\\.|[^"\\])*)"/)[1]);
+    console.info(direction, degrees, minutes, seconds);
+          var dd = degrees + (minutes/60) + (seconds/(60*60));
+          dd = parseFloat(dd);
+          if (direction == "S" || direction == "W") {
+            dd = dd * -1;
+          } // Don't do anything for N or E
+          return dd;
+  }
+
   angular.extend($scope, {
         center: {
           lat: 0,
@@ -51,25 +65,31 @@ function DetailController(Data, $rootScope, $state, $scope, FileUploader, leafle
                     $scope.images.push(dres);
                 });
             })
+      };
+          var co = vm.pantai.coordinat.split(" ");
+          var lat = parseFloat(convertDMSToDD(co[0])).toFixed(6);
+          var lng = parseFloat(convertDMSToDD(co[1])).toFixed(6);
+          lat = parseFloat(lat);
+          lng = parseFloat(lng);
+          console.info('get lat lng', lat, lng)
           var mainMarker = {
-            lat: vm.foursquare.location.lat,
-            lng: vm.foursquare.location.lng,
-            message: vm.foursquare.name,
+            lat: lat,
+            lng: lng,
+            message: vm.pantai.name,
             focus: true,
             draggable: false
           }
 
           angular.extend($scope, {
               center: {
-                lat: vm.foursquare.location.lat,
-                lng: vm.foursquare.location.lng,
+                lat: lat,
+                lng: lng,
                 zoom: 14,
               },
               markers: {
                 mainMarker:angular.copy(mainMarker)
               }
           });
-      };
 
 
       var search = _.map(vm.pantai.tags, function(re){
