@@ -3,6 +3,7 @@ window.jQuery = require('jquery');
 window.$ = window.jQuery;
 angular       = require('angular');
 require('angular-ui-router');
+require('angular-sanitize');
 require('angular-leaflet-directive');
 require('lodash');
 window.moment = require('moment');
@@ -16,7 +17,7 @@ require('../node_modules/angular-bootstrap-lightbox/dist/angular-bootstrap-light
 require('angular-file-upload');
 require('angular-leaflet-directive');
 require('leaflet');
-var app = angular.module('aadc',['ui.router','leaflet-directive','angularFileUpload','selector',
+var app = angular.module('aadc',['ui.router','ngSanitize','leaflet-directive','angularFileUpload','selector',
     'angular-carousel','bootstrapLightbox','ngTagsInput']);
 
 require('./modules/factories/recFactory.js');
