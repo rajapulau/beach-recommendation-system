@@ -14,7 +14,7 @@
     </div>
     <div class="col-sm-4">
       <p class="title-content">{{pantai.data.name}}</p>
-      <span>{{pantai.data.description}}</span>
+      <span ng-bind-html="pantai.data.description"></span>
     </div>
     <div class="col-sm-4">
       <div>Koordinat : {{ pantai.data.coordinat}}</div>
