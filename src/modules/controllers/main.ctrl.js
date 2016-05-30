@@ -20,15 +20,18 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
         var matrix={};
         var matrix_wdi ={};
 
-        
-
         var dataTF = data.reduce(function (results, item) {
             var beachName = item.name.replace(/ /g, '-').toLowerCase();
-            var tags = _.reduce(item.tags, function (res, tag) {
-                  
+            var beachTag = _.reduce(item.tags, function (res, tag) {
             var ret = res.concat(tag.name.split('-'));
                 return ret;
             }, [])
+
+            var titleTags = item.name.split(" ");
+            var titleJoin = _.join(titleTags,'-').toLowerCase();
+            var tags = _.merge(beachTag, titleTags);
+
+            allTags.push({name:titleJoin});
 
             var searchText = _.reduce(search, function(result, value, key){
                 var search = result.concat(value.split('-'));
@@ -42,7 +45,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             var tagsCount  = _.countBy(tags);
 
             var tagsCount3 = _.reduce(tagsCount, function (res, value, key) {
-                res[key] = parseFloat((value / tagsLength).toFixed(3));
+                res[key.toLocaleLowerCase()] = parseFloat((value / tagsLength).toFixed(3));
                 return res;
             }, {});
 
@@ -51,7 +54,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             };
 
             var df = _.reduce(tagsCount, function (dfRes, dfValue, dfKey) {
-                dfRes[dfKey] = dfValue;
+                dfRes[dfKey.toLocaleLowerCase()] = dfValue;
                 return dfRes;
             }, {});
 
@@ -67,6 +70,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 return gRes;
             }, {});
 
+            // console.info('nilai df dan tmp', df, temp, tagDF)
             results[beachName] = {
                 df: tagsCount3,
                 tags: tagDF
@@ -74,7 +78,6 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
 
             return results;
         }, {});
-        
 
         var tags = _.reduce(allTags, function (res, tag) {  
             var ret = res.concat(tag.name.split('-'));
@@ -318,7 +321,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
 
         vm.cosinusOrdered = _.orderBy(cosinusMergered, ['cosinus'], ['desc']);
 
-        // console.info('load dataTF', dataTF);
+        console.info('load dataTF', dataTF);
         console.log('load objTags',objTags);
         console.info('load matrix',matrix);
         console.log('load cosinus',cosinus);
