@@ -27,9 +27,11 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 return ret;
             }, [])
 
+            debugger
+
             var titleTags = item.name.split(" ");
             var titleJoin = _.join(titleTags,'-').toLowerCase();
-            var tags = _.merge(beachTag, titleTags);
+            var tags = _.concat(beachTag, titleTags);
 
             allTags.push({name:titleJoin});
 
@@ -45,7 +47,18 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             var tagsCount  = _.countBy(tags);
 
             var tagsCount3 = _.reduce(tagsCount, function (res, value, key) {
-                res[key.toLocaleLowerCase()] = parseFloat((value / tagsLength).toFixed(3));
+                // res[key.toLocaleLowerCase()] = parseFloat((value / tagsLength).toFixed(3));
+                var sdf = _.reduce(searchCount, function (dfRes, dfValue, dfKey) {
+                  // console.info('load tagsCount3', key, dfKey)
+                  if(key.toLocaleLowerCase() == dfKey.toLocaleLowerCase()){
+                    dfRes[dfKey.toLocaleLowerCase()] = dfValue;
+                  }else{
+                    dfRes[dfKey.toLocaleLowerCase()] = 0;
+                  }
+                  return dfRes;
+                }, {});
+                if(typeof sdf[key.toLocaleLowerCase()] === 'undefined') sdf[key.toLocaleLowerCase()] = 0;
+                res[key.toLocaleLowerCase()] = sdf[key.toLocaleLowerCase()];
                 return res;
             }, {});
 
@@ -54,6 +67,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             };
 
             var df = _.reduce(tagsCount, function (dfRes, dfValue, dfKey) {
+                console.info('load df', dfKey)
                 dfRes[dfKey.toLocaleLowerCase()] = dfValue;
                 return dfRes;
             }, {});
@@ -66,7 +80,16 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
 
             var tagDF = _.reduce(temp, function (gRes, gValue, gKey) {
                 if(typeof df[gValue] === 'undefined') df[gValue] = 0;
-                gRes[gValue] = df[gValue];
+                var sdf = _.reduce(searchCount, function (dfRes, dfValue, dfKey) {
+                  if(dfKey.toLocaleLowerCase() == gValue.toLocaleLowerCase()){
+                    dfRes[dfKey.toLocaleLowerCase()] = dfValue;
+                  }else{
+                    dfRes[dfKey.toLocaleLowerCase()] = 0;
+                  }
+                  return dfRes;
+                }, {});
+                if(typeof sdf[gValue.toLocaleLowerCase()] === 'undefined') sdf[gValue.toLocaleLowerCase()] = 0;
+                gRes[gValue.toLocaleLowerCase()] = sdf[gValue.toLocaleLowerCase()];
                 return gRes;
             }, {});
 
@@ -101,16 +124,53 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 }
                 return tRes;
             },{});
-            results[tag] = v;
+            results[tag.toLocaleLowerCase()] = v;
+            return results;
+        },{});
+
+        var varTagBeach = _.reduce(unionTags, function(results, tag){
+            var v = _.reduce(dataTF, function(tRes, tVal, tKey){
+              if(_.has(dataTF[tKey].df, tag.toLocaleLowerCase())){
+                return tRes.concat(tKey);
+              }else{
+                return tRes;
+              }
+            },[]);
+
+            results[tag] = {
+              'pantai': v
+            };
+
+            var z = _.reduce(results[tag].pantai, function(tRes, tVal, tKey){
+              tRes[tVal] = dataTF[tVal].df[tag.toLocaleLowerCase()];
+              return tRes;
+            },{});
+
+          var val = _(z)
+            .countBy(function(res){ return res > 0 })
+            .value().true;
+          var df = (val != undefined) ? val : 0;
+          var resLog = parseFloat(Math.log10(_.size(dataTF)/df).toFixed(3));
+
+            results[tag] = {
+              'beach': v,
+              'tagofbeach': z,
+              'idf': (_.isFinite(resLog))? resLog : 0
+            };
             return results;
         },{});
 
         var objTags = _.reduce(unionTags, function (results, tag) {
-            var idf = _.reduce(dataTF, function(res, value, key){
-                var resLog = parseFloat(Math.log10( dataTF[key].df[tag]).toFixed(3));
-                res[key] = (_.isFinite(resLog))? resLog : 0;
-                return res;
-            },{});
+            // var idf = _.reduce(dataTF, function(res, value, key){
+            //     var aa = dataTF[key].df;
+            //     var val = _(aa)
+            //       .countBy(function(res){ return res > 0 })
+            //       .value().true;
+            //     var df = (val != undefined) ? val : 0;
+            //     var resLog = parseFloat(Math.log10(_.size(dataTF)/df).toFixed(3));
+            //       res[key] = (_.isFinite(resLog))? resLog : 0;
+            //     return res;
+            // },{})
 
             var searchText = _.reduce(search, function(result, value, key){
                 var search = result.concat(value.split('-'));
@@ -124,7 +184,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 var sizeTags = _.size(_.filter(fVal, function(o) { return o>0; }))
                 var total = Data.list.length+1;
 
-                if (tag === fKey) {
+                if (tag.toLocaleLowerCase() === fKey.toLocaleLowerCase()) {
                     fRes[fKey] = parseFloat(Math.log10(total/sizeTags).toFixed(3))
                 }
                 else{
@@ -138,17 +198,19 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             },{});
 
             results[tag] = {
-                tidf: tidf,
-                idf: idf
+                tidf: varTagBeach[tag].idf,
+                idf: varTagBeach[tag].idf
             };
 
             var wdt = _.reduce(dataTF, function(res, value, key){
-                res[key] = parseFloat(results[tag].tidf[tag]*varTag[tag][key]);
-                    return res;
+                // console.info('load wdt', key, tag, varTagBeach[tag].tagofbeach)
+                var vWdt = parseFloat(results[tag].tidf * varTagBeach[tag].tagofbeach[key]);
+                res[key] = _.isNaN(vWdt)? 0 : vWdt;
+                return res;
             },{});
 
             results[tag] = {
-                tidf: tidf,
+                tidf: varTagBeach[tag].idf,
                 wdt: wdt
             };
 
@@ -162,10 +224,12 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 var searchCount  = _.countBy(searchText);
 
                 var sResults = _.reduce(searchCount, function(sRes, sValue, sKey){
-                    if (sKey === tag) {
+                    if (sKey.toLocaleLowerCase() === tag.toLocaleLowerCase()) {
                         var wdt = _.isNaN(results[tag].wdt[key])?0:results[tag].wdt[key];
-                        sRes[key] = parseFloat((results[tag].tidf[sKey]*wdt).toFixed(3));
-                        sRes['q'] = results[tag].tidf[tag];
+                        // console.info('load key', sKey, key, wdt)
+                          
+                        sRes[key] = parseFloat((results[tag].tidf*wdt).toFixed(3));
+                        sRes['q'] = results[tag].tidf;
                     }else{
                         if (sRes[key] > 0) {
                             sRes['q'] = sRes['q']
@@ -179,11 +243,11 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 },{});
                 res['q'] = sResults['q'];
                 res[key] = sResults[key];
-                
                 return res;
             },{});
             results[tag] = {
-                tidf: tidf,
+                idf:varTagBeach[tag].idf,
+                tidf:varTagBeach[tag].idf,
                 wdt: wdt,
                 wdi: wdi
             };
@@ -201,8 +265,12 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                     var wdt = _.isNaN(results[tag].wdt[key])?0:results[tag].wdt[key];
                     sRes[key] = parseFloat((Math.pow(wdt, 2)).toFixed(3));
                     sRes['q'] = parseFloat(
-                        results[tag].wdi['q']*results[tag].tidf[tag]
+                        // results[tag].wdi['q']*results[tag].tidf[tag]
+                        Math.pow(results[tag].tidf, 2)
                         );
+                if(tag === 'ATV' && key === 'pantai-depok'){
+                  // debugger
+                }
                     return sRes
                 },{});
 
@@ -210,6 +278,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 if(!matrix_wdi[key]) matrix_wdi[key]=0;
                 // matrix[key][tag] = results[tag].vector[key]
                 matrix_wdi[key] += results[tag].wdi[key]
+                // console.info('load wdi', wdt[key])
 
                 total_wdi_per_object[key] += +wdt[key]
                 res['q'] = sResults['q'];
@@ -218,7 +287,8 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             },{});
 
             results[tag] = {
-                tidf: tidf,
+                idf: varTagBeach[tag].idf,
+                tidf: varTagBeach[tag].idf,
                 wdt: wdt,
                 wdi: wdi,
                 total_wdi_per_object: total_wdi_per_object,
@@ -241,10 +311,13 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 return res;
             },{})
             
+            // console.info('loooadd idf', idf, tag)
             results[tag] = {
-                tidf: (tidf[tag])?tidf[tag]:0,
+                idf: varTagBeach[tag].idf,
+                tidf: varTagBeach[tag].idf,
                 wdt: wdt,
                 wdi: wdi,
+                sqrt_total_vector_per_object: sqrt_total_vector_per_object,
                 total_wdi_per_object: total_wdi_per_object,
                 vector: vector
             };
@@ -285,11 +358,15 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 return oRes;
             },{})
 
-            // debugger
-
             var vector_q = parseFloat(Math.sqrt(parseFloat(matrix['q'].toFixed(3))).toFixed(3));
             var vector_object = parseFloat(Math.sqrt(parseFloat(matrix[beachName].toFixed(3))).toFixed(3));
             var wdi_object = parseFloat(matrix_wdi[beachName].toFixed(3));
+            var val_cosinus = parseFloat((wdi_object /(vector_q*vector_object)).toFixed(3));
+
+            // console.info('load cosinus', beachName, wdi_object, vector_q, vector_object)
+            if(beachName === 'pantai-depok'){
+              // debugger
+            }
 
             cRes[beachName] = {
                 id: cItem.id,
@@ -298,7 +375,7 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
                 total_vector: parseFloat(matrix[beachName].toFixed(3)),
                 sqrt_total_vector_q: vector_q,
                 sqrt_total_vector: vector_object,
-                cosinus: parseFloat((wdi_object /(vector_q*vector_object)).toFixed(3))
+                cosinus: _.isNaN(val_cosinus)? 0 : val_cosinus
             };
 
             return cRes;
