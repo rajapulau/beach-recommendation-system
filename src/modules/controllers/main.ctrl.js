@@ -8,8 +8,12 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
   vm.goRecommendation = goRecommendation;
 
   function goRecommendation(){
-    if(vm.form.search){
+    if(vm.form.search || vm.form.searchText){
+        if (vm.form.search != undefined) {
         var search = _.map(vm.form.search,'text');
+        }else{
+            var search = vm.form.searchText.split(" ")
+        }
         var data = Data.list;
         var allTags = Data.tags;
         var gSearch = {};
@@ -26,8 +30,6 @@ function MainController($rootScope, $state, $scope, FileUploader, Data){
             var ret = res.concat(tag.name.split('-'));
                 return ret;
             }, [])
-
-            debugger
 
             var titleTags = item.name.split(" ");
             var titleJoin = _.join(titleTags,'-').toLowerCase();

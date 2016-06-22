@@ -87,6 +87,7 @@ a.active{
 .container-page{
   overflow-y: auto;
   padding-left: 25px;
+  padding-right: 25px;
   height: 100%;
   overflow-x: auto;
   background: #EFEFF4;
@@ -568,7 +569,8 @@ form{
   z-index: 9999;
   position: fixed;
   background: #fff;
-  margin-left: -25px
+  margin-left: -25px;
+  top: 0;
   /* display: none; */
 }
 

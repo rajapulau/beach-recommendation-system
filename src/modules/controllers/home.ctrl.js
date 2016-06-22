@@ -40,6 +40,8 @@ function HomeController($rootScope, $http, $state, $scope, FileUploader, Data){
             })
         }
       })
+  }, function(err){
+    $rootScope.loading = false;
   })
 
   function goDetail(id){
